@@ -5,6 +5,7 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 config.color_scheme = 'PaperColor Dark (base16)'
+-- config.color_scheme = 'Catppuccin Mocha' -- or Macchiato, Frappe, Latte
 
 config.font = wezterm.font 'Hack Nerd Font Mono'
 

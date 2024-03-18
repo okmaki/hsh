@@ -1,23 +1,24 @@
 { config, pkgs, ... }:
+let
+	username = "maki";
+in
 {
 	imports = [
 		./hyprland.nix
-		./launcher.nix
-		./neovim.nix
 		./git.nix
 	];
 
 	home.stateVersion = "23.11";
-	home.username = "maki";
-	home.homeDirectory = "/home/maki";
+	home.username = "${username}";
+	home.homeDirectory = "/home/${username}";
 
 	home.packages = with pkgs; [
 
+		# misc desktop stuff
+		swww
+
 		# status bar + other widgets
 		eww
-
-		# launcher
-		tofi
 
 		# notifications
 		libnotify
@@ -27,6 +28,11 @@
 		(nerdfonts.override { fonts = [ "Hack" "RobotoMono" "Agave" ]; })
 
 		# tools
+		imagemagick
+		wl-clipboard
+		bun
+		ags
+		ripgrep
 
 		# terminal applications
 		neofetch
@@ -37,8 +43,13 @@
 		chromium
   	];
 
-	home.shellAliases = {
-		config = "git --git-dir=$HOME/.config/
+	programs.bash = {
+		enable = true;
+		enableCompletion = true;
+		shellAliases = {
+			vim = "nvim";
+			config = "git --git-dir=$HOME/.config/";
+		};
 	};
 
 	# Home Manager is pretty good at managing dotfiles. The primary way to manage
