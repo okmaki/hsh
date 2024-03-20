@@ -1,3 +1,4 @@
 environment.d/
 hypr/hyprland.conf
 nixos/hardware-configuration.nix
+nushell/history.txt

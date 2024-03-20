@@ -4,8 +4,11 @@ let
 in
 {
 	imports = [
-		./hyprland.nix
+		./shell.nix
 		./git.nix
+		./hyprland.nix
+		./neofetch.nix
+		./theme.nix
 	];
 
 	home.stateVersion = "23.11";
@@ -17,15 +20,9 @@ in
 		# misc desktop stuff
 		swww
 
-		# status bar + other widgets
-		eww
-
 		# notifications
 		libnotify
 		mako
-
-		#fonts
-		(nerdfonts.override { fonts = [ "Hack" "RobotoMono" "Agave" ]; })
 
 		# tools
 		imagemagick
@@ -33,6 +30,8 @@ in
 		bun
 		ags
 		ripgrep
+		yazi
+		starship
 
 		# terminal applications
 		neofetch
@@ -42,15 +41,6 @@ in
 		librewolf
 		chromium
   	];
-
-	programs.bash = {
-		enable = true;
-		enableCompletion = true;
-		shellAliases = {
-			vim = "nvim";
-			config = "git --git-dir=$HOME/.config/";
-		};
-	};
 
 	# Home Manager is pretty good at managing dotfiles. The primary way to manage
 	# plain files is through 'home.file'.
@@ -78,7 +68,9 @@ in
 	#  /etc/profiles/per-user/maki/etc/profile.d/hm-session-vars.sh
 	#
 	home.sessionVariables = {
+		SHELL = "${pkgs.nushell}/bin/nu";	
 		EDITOR = "nvim";
+		VISUAL = "nvim";
 	};
 
 	programs.home-manager.enable = true;
